@@ -5,7 +5,7 @@
 ```
 "C:\Program Files (x86)\JetBrains\WebStorm 2016.2\bin\runnerw.exe" "C:\Program Files\nodejs\node.exe" "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run unit
 
-> test-vue@1.0.0 unit C:\Users\hzfanxianwei\workspace\webstorm\testVue
+> test-vue@1.0.0 unit C:\Users\xxx\workspace\testVue
 > cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run
 
 (node:464) DeprecationWarning: `DEBUG_FD` is deprecated. Override `debug.log` if you want to use a different log function (https://git.io/vMUyr)
