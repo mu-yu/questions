@@ -1,25 +1,35 @@
 import Vue from 'vue'
 import Hello from 'src/components/Hello'
 
+let id = 0
+
 describe('Hello.vue', () => {
-  it('should render correct contents', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Hello)
-    })
-    expect(vm.$el.querySelector('.hello h1').textContent)
-      .to.equal('Welcome to Your Vue.js App')
-  })
+  it('get data correct', (done) => {
+    let vm = createComp(Hello)
 
-  it('should change size & reRender', () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(Hello)
+    console.log('test work: ---------===============------------------')
+    vm.getData().then(retData => {
+      console.log('retData: ---------===============------------------', retData)
+      expect(vm.ver.length).equal(retData.result)
+      done()
+    }).catch(error => {
+      console.log('error: ---------=============----------', error)
+      done()
     })
-    let spy = sinon.spy(vm, 'sayHello')
-
-    vm.changeSize(20)
-    expect(vm.size).to.be.equal(20)
-    expect(spy).calledOnce
   })
 })
+
+function createComp (Comp) {
+  Comp.el = `#${createElm().id}`
+
+  return new Vue(Comp).$mount()
+}
+
+function createElm () {
+  const elm = document.createElement('div')
+
+  elm.id = 'app' + ++id
+  document.body.appendChild(elm)
+
+  return elm
+}

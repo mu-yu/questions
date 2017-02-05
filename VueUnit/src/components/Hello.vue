@@ -1,25 +1,28 @@
 <template>
-  <div class="hello" @click="changeSize(25)">
+  <div class="hello" @click="getData">
     <h1>{{ msg }}</h1>
+    <p>{{ver}}</p>
   </div>
 </template>
 
 <script lang="babel">
+import axios from 'axios'
 export default {
   name: 'hello',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      size: 10
+      ver: []
     }
   },
   methods: {
-    changeSize (newSize) {
-      this.size = newSize
-      this.reRender()
-    },
-    reRender () {
-      this.msg = 'balabala...'
+    getData () {
+      return axios.get('/v2/58970a841100006218c0ddbf').then(response => {
+        let data = response.data
+        this.ver = data.result
+
+        return data
+      })
     }
   }
 }
